@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+ <link href="https://vjs.zencdn.net/7.6.6/video-js.css" rel="stylesheet" />
+
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+<p>
+  <strong>Title:</strong>
+  <%= @video.title %>
+</p>
+<%# <div style="width:400px; height: 400px">
+  <%=image_tag(@video.thumbnail)%>
+
+
+<%# <%= video_tag(url_for(@video.clip), style:"width:400px; height: auto", controls: "")%> 
+
+<video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="640"
+    height="264"
+    <%# poster="MY_VIDEO_POSTER.jpg" %>
+    data-setup="{}">
+
+    <source src="<%=url_for(@video.clip)%>" type="video/mp4" >
+    
+   
+  </video>
+
+<p>
+  <strong>Description:</strong>
+  <%= @video.description %>
+</p>
+
+
+<p>
+  <strong>Hashtag:</strong>
+  <%= @video.hashtag %>
+</p>
+
+<%# <p>
+  <strong>Content creator:</strong>
+  <%= @video.content_creator_id %>
+
+
+<%= link_to 'Edit', edit_video_path(@video) %> |
+<%= link_to 'Back', videos_path %>
+<script src="https://vjs.zencdn.net/7.6.6/video.js"></script>
