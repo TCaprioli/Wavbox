@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_11_142559) do
+ActiveRecord::Schema.define(version: 2020_02_11_142436) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,18 +33,17 @@ ActiveRecord::Schema.define(version: 2020_02_11_142559) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "content_creators", force: :cascade do |t|
-    t.string "profile_name"
-    t.string "bio"
-    t.string "username"
-    t.string "password_digest"
+  create_table "subs", force: :cascade do |t|
+    t.integer "subscribed_id"
+    t.integer "subscriber_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "subs", force: :cascade do |t|
-    t.integer "content_creator_id"
-    t.integer "viewer_id"
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "bio"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,13 +53,6 @@ ActiveRecord::Schema.define(version: 2020_02_11_142559) do
     t.string "description"
     t.string "hashtag"
     t.integer "content_creator_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "viewers", force: :cascade do |t|
-    t.string "account_name"
-    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

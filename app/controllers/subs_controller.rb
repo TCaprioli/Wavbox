@@ -15,6 +15,6 @@ class SubsController < ApplicationController
 
    private
    def subs_params
-    params.require(:sub).permit(:content_creator_id, :viewer_id)
+    params.require(:sub).permit(:subscribed_id, :subscriber_id)
 end
 end

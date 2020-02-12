@@ -1,4 +1,4 @@
-<h1>ContentControllers#new</h1>
+<h1>User#new</h1>
 <h1>Sign Up</h1>
 <% if flash[:errors] %>
     <% flash[:errors].each do |error| %>
@@ -6,9 +6,7 @@
     <% end %>
 <% end %>
 
-<%= form_for @content_creator do |f|%>
-    <%= f.label :profile_name %><br>
-    <%= f.text_field :profile_name %><br>
+<%= form_for @user do |f|%>
 
   <%= f.label :username%><br>
   <%= f.text_field :username%><br>

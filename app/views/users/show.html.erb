@@ -1,0 +1,18 @@
+
+
+<p> 
+    <strong> <%= @user.profile_name %> </strong>
+</p>
+<p> 
+    <strong> <%= @user.bio %> </strong>
+</p>
+
+<p> 
+        <%@user.videos.each do |video|%>
+    <strong> <%= link_to video.title, video_path %> </strong>
+    <%end%>
+</p>
+
+<%= link_to 'New Video', new_video_path %> 
+
+
