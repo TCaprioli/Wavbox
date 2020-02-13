@@ -4,7 +4,9 @@ class SubsController < ApplicationController
    end
 
    def create
+    # byebug
     @sub = Sub.create(subs_params)
+    redirect_to user_path(@sub.subscribed.id)
    end
 
    def destroy
@@ -14,7 +16,8 @@ class SubsController < ApplicationController
    end
 
    private
-   def subs_params
-    params.require(:sub).permit(:subscribed_id, :subscriber_id)
-end
+
+    def subs_params
+       params.permit(:subscribed_id, :subscriber_id)
+    end
 end

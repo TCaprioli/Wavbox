@@ -11,9 +11,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     # byebug
     if @user && @user.authenticate(params[:password])
-       sessions[:user_id] = @user.id
+       session[:user_id] = @user.id
        redirect_to '/welcome'
     else
+      flash[:errors] = [ "We don't have a user with that username and password" ]
        redirect_to '/login'
     end
   end
@@ -22,10 +23,11 @@ class SessionsController < ApplicationController
   end
 
   def welcome
+    @videos = Video.all
   end
 
   def destroy
-    session.destroy
+    session.delete(:user_id)
     redirect_to '/welcome'
   end
 end

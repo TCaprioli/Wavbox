@@ -1,17 +1,35 @@
-
-
 <p> 
-    <strong> <%= @user.profile_name %> </strong>
+    <strong> <%= @user.username %> </strong>
 </p>
 <p> 
     <strong> <%= @user.bio %> </strong>
 </p>
-
+ 
 <p> 
         <%@user.videos.each do |video|%>
-    <strong> <%= link_to video.title, video_path %> </strong>
+    <strong> <%= link_to video.title, video_path(video) %> 
+    <% if video.user.id == current_user.id%>
+    <li>
+        <%= link_to 'Edit', edit_video_path(video) %>
+    </li>
+    <li>
+        <%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+    <% end %>
     <%end%>
+
 </p>
+<hr>
+    <thead>
+        <th> Subscriptions: </th>
+    </thead>
+    <tbody>
+        <% @user.subscribed_to.uniq.each do |sub| %> 
+        <th> <%= link_to sub.username, user_path(sub) %> </th>
+        <% end %>
+    </tbody><br>
+
+    <hr>
 
 <%= link_to 'New Video', new_video_path %> 
 

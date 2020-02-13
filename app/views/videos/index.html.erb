@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Thumbnail</th>
       <th>Description</th>
       <th>Hashtag</th>
       <th>Content creator</th>
@@ -17,9 +18,10 @@
     <% @videos.each do |video| %>
       <tr>
         <td><%= video.title %></td>
+        <td><%= image_tag(video.thumbnail) if video.thumbnail.attached? %></td>
         <td><%= video.description %></td>
         <td><%= video.hashtag %></td>
-        <td><%= video.content_creator_id %></td>
+        <td><%= video.user_id %></td>
         <td><%= link_to 'Show', video %></td>
         <td><%= link_to 'Edit', edit_video_path(video) %></td>
         <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -27,6 +29,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'Upload New Videos', new_video_path %> 
 
 <br>
 

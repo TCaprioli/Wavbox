@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+ *= require main
+
+ td#thumbnail {
+width: 100px;
+height: 100px;
+ }

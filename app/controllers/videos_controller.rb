@@ -25,6 +25,7 @@ class VideosController < ApplicationController
   # POST /videos.json
   def create
     @video = Video.new(video_params)
+    # byebug
 
     respond_to do |format|
       if @video.save
@@ -69,6 +70,6 @@ class VideosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:title, :description, :hashtag, :content_creator_id, :clip)
+      params.require(:video).permit(:title, :description, :hashtag, :user_id, :clip, :thumbnail)
     end
 end

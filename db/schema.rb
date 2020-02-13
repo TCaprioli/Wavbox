@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_02_11_142436) do
     t.string "title"
     t.string "description"
     t.string "hashtag"
-    t.integer "content_creator_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

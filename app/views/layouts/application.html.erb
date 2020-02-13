@@ -1,15 +1,125 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tube</title>
+    <title>WavBox</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
 
+  <div>
+   <% if @notification %> 
+        <p class="message">
+          <%= @notification %>
+        </p>
+      <% end %>
+
+      <% if @errors && @errors.any? %>
+      <ul class="errors">
+        <% @errors.each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
+
+      <header>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item">
+      <img src="icon.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a>
+      <%= link_to "Home", '/welcome', method: :get, :class =>"navbar-item"%>
+        
+      </a>
+
+      <%# <a class="navbar-item">
+        Documentation
+      </a> %>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <%# <a class="navbar-item">
+            Jobs
+          </a> %>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a style= "width:0.5%">
+          <% if !logged_in? %>
+            <strong> <%= link_to "Sign Up", new_user_path, method: :get, :class => "button is-primary"%></strong>
+          </a>
+          <a >
+            <%= link_to "Login", '/login', method: :get, :class =>"button is-light"%>
+          </a>
+            <% else %>
+            <a style="width:0.5%">
+          <strong>  <%= link_to "Profile", user_path(current_user.id), :class =>"button is-light" %> </strong>
+          </a>
+            <strong> <%= link_to "Logout", logout_path, method: "delete", :class => "button is-light"%> </strong>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+      <header>
+      
+
   <body>
+    
+    <section>
+      <div class="container is-fluid">
+        <div class="notification">
     <%= yield %>
+        </div>
+      </div>
+    </section>
   </body>
+
+    <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+    </p>
+  </div>
+</footer>
+
 </html>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
-  before_action :content_creator_specific, only: [ :show, :update, :edit, :destroy]
+  before_action :user_specific, only: [ :show, :update, :edit, :destroy]
 
   def show
   end
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
       flash[:errors] = @user.errors.full_messages
       redirect_to new_user_path
     end
-    # byebug
     session[:user_id] = @user.id
   end
 
@@ -43,7 +42,7 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:username, :bio, :password_digest)
+    params.require(:user).permit(:username, :bio, :password)
   end
 
 end

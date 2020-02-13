@@ -10,11 +10,11 @@ class User < ApplicationRecord
     #returns an array of **other users** this user instance is subscribed to
     has_many :subscribed_to, through: :given_subs, source: :subscribed
 
-    validates :username, uniqueness: true
-    validates :bio, length: { maximum: 250}
+    # validates :username, uniqueness: true
+    # validates :bio, length: { maximum: 250}
     
     has_secure_password
-    validates :password_digest, length: { in: 6..20 }
+    # validates :password_digest, length: { in: 6..20 }
     # validates :password_digest, confirmation: true,
     #     unless: Proc.new { |a| a.password_digest.blank? }
 
