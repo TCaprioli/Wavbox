@@ -11,28 +11,13 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
 
-  <div>
-   <% if @notification %> 
-        <p class="message">
-          <%= @notification %>
-        </p>
-      <% end %>
-
-      <% if @errors && @errors.any? %>
-      <ul class="errors">
-        <% @errors.each do |error| %>
-        <li>
-          <%= error %>
-        </li>
-        <% end %>
-      </ul>
-      <% end %>
+  
 
       <header>
       <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item">
-      <img src="icon.png" width="112" height="28">
+      <%=image_tag("icon.png")%>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -59,7 +44,7 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
+          <a class="navbar-item" href="https://dev.to/jtb6179/wavbox-llc-31b3">
             About
           </a>
           <%# <a class="navbar-item">
@@ -79,6 +64,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
+        <ul>
           <a style= "width:0.5%">
           <% if !logged_in? %>
             <strong> <%= link_to "Sign Up", new_user_path, method: :get, :class => "button is-primary"%></strong>
@@ -92,20 +78,40 @@
           </a>
             <strong> <%= link_to "Logout", logout_path, method: "delete", :class => "button is-light"%> </strong>
           <% end %>
-
+        </ul>
         </div>
       </div>
     </div>
   </div>
 </nav>
-      <header>
+      </header>
       
-
+<!-- ############################################## -->
   <body>
+  
     
     <section>
       <div class="container is-fluid">
-        <div class="notification">
+        <div class="notification is-info">
+        <div class="wave wave1">
+        <div class="wave wave2">
+          <% if @notification %> 
+            <p class="message">
+          <%= @notification %>
+           </p>
+          <% end %>
+
+         <% if @errors && @errors.any? %>
+          <ul class="errors">
+        <% @errors.each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
+      </div>
+      </div class="body_font">
     <%= yield %>
         </div>
       </div>
@@ -115,9 +121,9 @@
     <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+      <strong>WavBox</strong> by <a href="https://jgthms.com">Joel & Tyler</a>. The source code is licensed
       <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"></a>.
     </p>
   </div>
 </footer>

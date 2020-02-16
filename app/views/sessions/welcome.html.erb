@@ -5,41 +5,26 @@
     <strong>You are Logged In, <%= current_user.username%> </strong><br>
 </li>
 
-<%= %>
 
-<table style="width:40%">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Hashtag</th> 
-      <th>Content creator</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-<section>
-  <tbody class="wave wave1, wave wave 2, wave 3">
+  <div class="body-font">
+  <ul class = "image">
     <% @videos.each do |video| %>
-      <tr>
-        <td> <%= image_tag(video.thumbnail) if video.thumbnail.attached? %><%= video.title %> </td>
-        <td><%= video.hashtag %></td>
-        <td><% video.user.username %></td>
-        <td><%= link_to 'Show', video %></td>
-        
-      </tr>
+        <li>Title: <%=video.title%>
+        <li id= "img"> <%= image_tag(video.thumbnail) if video.thumbnail.attached? %> </li>
+        <li><%= video.hashtag %></li>
+        <li><% video.user.username %></li>
+        <li><%= link_to 'Show', video %></li>
     <% end %>
-  </tbody>
-</table>
-</section>
+  </ul>
+  </div>
 
 <%= link_to 'Upload New Videos', new_video_path %> 
 
 
-    <%# <%= link_to @videos, videos_path %> 
-
     <%=button_to "logout", logout_path, method: "delete"%>
 
-<%end%>
+<%end%> <!-- end of login conditional -->
 
 
 
@@ -49,18 +34,18 @@
     <tr>
       <th>Title</th>
       <th>Hashtag</th> 
-      <th>Content creator</th>
+      
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="body-font">
     <% @videos.each do |video| %>
       <tr>
         <td id="thumbnail"> <%= image_tag(video.thumbnail) if video.thumbnail.attached? %><%= video.title %> </td>
         <td><%= video.hashtag %></td>
         <td><% video.user.username %></td>
-        <td><%= link_to 'Show', video %></td>
+      
         
       </tr>
     <% end %>

@@ -1,36 +1,57 @@
 <p> 
-    <strong> <%= @user.username %> </strong>
-</p>
+    <h1 class="titleis-1"><strong> <%= @user.username %> </strong></h1>
+</p><br>
+
 <p> 
     <strong> <%= @user.bio %> </strong>
 </p>
+
  
 <p> 
-        <%@user.videos.each do |video|%>
-    <strong> <%= link_to video.title, video_path(video) %> 
+       <strong>Videos: </strong><br>
+       <%@user.videos.each do |video|%>
+       <li>
+     <%= link_to video.title, video_path(video) %> 
     <% if video.user.id == current_user.id%>
-    <li>
-        <%= link_to 'Edit', edit_video_path(video) %>
-    </li>
-    <li>
-        <%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %>
+    
+        (<%= link_to 'Edit Video', edit_video_path(video) %> |
+        <%= link_to 'Delete Video', video, method: :delete, data: { confirm: 'Are you sure?' } %>)
     </li>
     <% end %>
     <%end%>
 
 </p>
 <hr>
-    <thead>
-        <th> Subscriptions: </th>
-    </thead>
-    <tbody>
-        <% @user.subscribed_to.uniq.each do |sub| %> 
-        <th> <%= link_to sub.username, user_path(sub) %> </th>
-        <% end %>
-    </tbody><br>
 
-    <hr>
+<div class="tile is-ancestor">
+    <div class="tile is-12 is-parent">
 
-<%= link_to 'New Video', new_video_path %> 
+        <article class="tile is-child box">
+          <!-- Put any content you want -->
+            <strong class="body-font">Subscriptions: </strong>
+            <% @user.given_subs.uniq.each do |sub| %> 
+                <li><%= link_to sub.subscribed.username, user_path(sub.subscribed) %></li>
+                <% if sub.subscriber.id == current_user.id%>
+                <%=button_to "Unsubscribe", sub_path(sub), method: "delete"%>
+            <% end %>
+            <% end %>
+        </article>
+
+        <article class="tile is-child box">
+          <!-- Put any content you want --> 
+            <strong>Subscribers: </strong>
+            <% @user.subscriptions.uniq.each do |sub| %> 
+                <li><%= link_to sub.subscriber.username, user_path(sub.subscriber) %></li>
+                <% if sub.subscriber.id == current_user.id%>
+                <%=button_to "Unsubscribe", sub_path(sub), method: "delete"%>
+            <% end %>
+            <%end%>
+            
+        </article>
+    </div>
+</div><hr>
+<br>   
+<p class="bottom_link"><%= link_to 'New Video', new_video_path %></p>
+
 
 
